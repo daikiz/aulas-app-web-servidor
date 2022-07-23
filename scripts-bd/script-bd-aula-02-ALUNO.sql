@@ -62,7 +62,7 @@ CREATE INDEX `fk_tb_professor_tb_pessoa_idx` ON `tb_professor` (`id_pessoa` ASC)
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `tb_aluno` (
   `id_aluno` INT NOT NULL AUTO_INCREMENT,
-  `nome_reponsavel_legal` VARCHAR(150) NOT NULL,
+  `nome_responsavel_legal` VARCHAR(150) NOT NULL,
   `telefone_responsavel_legal` VARCHAR(45) NOT NULL,
   `historico_escolar` BLOB NULL,
   `endereço_responsavel` MEDIUMTEXT NOT NULL,
