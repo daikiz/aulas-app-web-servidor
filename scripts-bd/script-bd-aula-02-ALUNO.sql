@@ -80,6 +80,9 @@ ENGINE = InnoDB;
 
 CREATE INDEX `fk_tb_alunos_tb_pessoa1_idx` ON `tb_aluno` (`id_pessoa` ASC) VISIBLE;
 
+-- para alterar o nome de uma coluna o comando se chama CHANGE COLUMN
+-- comando para alterar o tipo de dados de uma coluna sem perder dados e sem precisar deletar nem a tabela e nem o campo da tabela
+-- ALTER TABLE tb_aluno MODIFY email_responsavel VARCHAR(150) NOT NULL;
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
