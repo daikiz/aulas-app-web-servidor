@@ -68,7 +68,7 @@ CREATE TABLE IF NOT EXISTS `tb_aluno` (
   `endereço_responsavel` MEDIUMTEXT NOT NULL,
   `is_matricula_ativa` TINYINT NOT NULL DEFAULT 1,
   `cpf_responsavel_legal` INT(11) NOT NULL,
-  `email_responsavel` VARCHAR(26) NOT NULL,
+  `email_responsavel` VARCHAR(100) NOT NULL,
   `id_pessoa` INT NOT NULL,
   PRIMARY KEY (`id_aluno`, `id_pessoa`),
   CONSTRAINT `fk_tb_alunos_tb_pessoa1`
