@@ -4,10 +4,15 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
 var pessoaRouter = require('./routes/pessoa');
+var turmaRouter = require('./routes/turma');
 
 var app = express();
+
+// DEV = DESENVOLVIMENTO
+// TEST/QA = TIME DE QA VALIDAR O SISTEMA
+// HOMOLOGACAO = CLIENTE VALIDAR O SISTEMA 
+// PROD - AMBIENTE REAL FINAL DE PRODUÇAÕ
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -16,7 +21,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
 app.use('/pessoas', pessoaRouter);
+app.use('/turmas', turmaRouter);
 
 module.exports = app;
