@@ -7,6 +7,16 @@ var indexRouter = require('./routes/index');
 var pessoaRouter = require('./routes/pessoa');
 var turmaRouter = require('./routes/turma');
 
+var db = require('./db');
+// executar fora de um bloco async
+db.connect();
+
+// executar dentro de um bloco async
+(async () => {
+    var connectionSample = await db.connect();
+    console.log('app.js Database connection: ' + connectionSample);
+})();
+
 var app = express();
 
 // DEV = DESENVOLVIMENTO
