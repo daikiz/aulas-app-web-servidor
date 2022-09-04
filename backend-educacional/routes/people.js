@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var db = require('../db');
+var dbPeople = require('../repository/db.people');
 
 /* GET consulta de pessoas (agora precisa ser um função async) */
 router.get('/', async function(req, res, next) {
@@ -8,7 +8,7 @@ router.get('/', async function(req, res, next) {
   console.log('OPERAÇAO GET');
   // inicializacao de um array (lista) vazia
   // await - para aqui e espera a Promise executar e trazer o seu resultado
-  var arrPessoa = await db.selectPessoas();
+  var arrPessoa = await dbPeople.selectPessoas();
 
   // traz a lista de pessoas do banco de dados tabela tb_pessoa 
   res.json(arrPessoa);
@@ -38,7 +38,7 @@ router.post('/', function(req, res, next) {
   const novaPessoa = {};
   novaPessoa.nome = req.body.nome;
 
-  db.insertNovaPessoa(novaPessoa);
+  dbPeople.insertNovaPessoa(novaPessoa);
   res.send('Cadastro com sucesso!');
 });
 
@@ -50,7 +50,7 @@ router.put('/', function(req, res, next) {
   pessoaAtualizacao.idPessoa = idPessoa;
   pessoaAtualizacao.nome = req.body.nome;
 
-  db.updatePessoa(idPessoa, pessoaAtualizacao);
+  dbPeople.updatePessoa(idPessoa, pessoaAtualizacao);
   res.send('Atualizacao com sucesso!');
 });
 
@@ -59,7 +59,7 @@ router.delete('/', function(req, res, next) {
   console.log('OPERAÇAO DELETE');  
   res.send('Exclusão com sucesso!');
   const idPessoa = req.params.idPessoa;
-  db.deletePessoa(idPessoa);
+  dbPeople.deletePessoa(idPessoa);
 });
 
 module.exports = router;
