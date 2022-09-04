@@ -1,6 +1,6 @@
 # aulas-app-web-servidor
-repositorio com aplicativo servidor e banco de dados das aulas de programação 2022
+Repository with server application and database from programming courses in 2022
 
-Para subir o servidor de banco de dados via Docker execute´(na linha de comando, na pasta raiz do projeto)
+To run the database server locally using Docer Compose, execute at the root folder the following command:
 
 docker-compose up

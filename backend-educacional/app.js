@@ -4,14 +4,14 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
-var pessoaRouter = require('./routes/pessoa');
-var turmaRouter = require('./routes/turma');
+var peopleRouter = require('./routes/people');
+var teacherRouter = require('./routes/teacher');
 
 var db = require('./db');
-// executar fora de um bloco async
+// execute outside async block
 db.connect();
 
-// executar dentro de um bloco async
+// execute inside async block
 (async () => {
     var connectionSample = await db.connect();
     console.log('app.js Database connection: ' + connectionSample);
@@ -19,10 +19,11 @@ db.connect();
 
 var app = express();
 
-// DEV = DESENVOLVIMENTO
-// TEST/QA = TIME DE QA VALIDAR O SISTEMA
-// HOMOLOGACAO = CLIENTE VALIDAR O SISTEMA 
-// PROD - AMBIENTE REAL FINAL DE PRODUÇAÕ
+// Environment list available
+// DEV = development
+// TEST/QA = QA team will validate the system
+// HOMOLOG = The client will validate the system 
+// PROD = Real / final production environment
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -31,7 +32,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/pessoas', pessoaRouter);
-app.use('/turmas', turmaRouter);
+app.use('/people', peopleRouter);
+app.use('/teacher', teacherRouter);
 
 module.exports = app;

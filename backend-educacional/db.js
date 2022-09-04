@@ -52,5 +52,9 @@ async function queryGenerica(sql, params) {
   const [results, ] = await connection.execute(sql, params);
   return results;
 }
+
+// funções de aluno
+
+// funções de professor
  
 module.exports = {connect, selectPessoas, insertNovaPessoa, updatePessoa, deletePessoa, queryGenerica}
