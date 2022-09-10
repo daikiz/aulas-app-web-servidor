@@ -14,7 +14,7 @@ db.connect();
 // execute inside async block
 (async () => {
     var connectionSample = await db.connect();
-    console.log('app.js Database connection: ' + connectionSample);
+    console.log('app.js - using nodemon Database connection: ' + connectionSample);
 })();
 
 var app = express();
@@ -34,5 +34,18 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/people', peopleRouter);
 app.use('/teacher', teacherRouter);
+
+// start node server
+const port = process.env.PORT || 3000;
+app.listen(port, () => {
+  console.log(`App UI available http://localhost:${port}`);
+  // console.log(`Swagger UI available http://localhost:${port}/swagger/api-docs`);
+});
+
+// refernecia: https://github.com/IBM/nodejs-express-app/blob/master/server/server.js
+// error handler for unmatched routes or api calls
+// app.use((req, res, next) => {
+  // res.sendFile(path.join(__dirname, '../public', '404.html'));
+// });
 
 module.exports = app;

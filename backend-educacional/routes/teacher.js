@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var dbTeacher = require('../repository/db.teacher');
+var validarCadastroTeacher = require('../business/teacher.cadastro');
 
 /* GET consulta de professores (agora precisa ser um função async) */
 router.get('/', async function(req, res, next) {
@@ -22,9 +23,10 @@ router.post('/', async function(req, res, next) {
     novoProfessor.salario = req.body.salario;
     novoProfessor.endereco = req.body.endereco;
     novoProfessor.telefone_fixo = req.body.telefone_fixo;
-    novoProfessor.telefone_celular = req.body.telefone_celular;
+    novoProfessor.telefone_celular = req.body.telefone_celular;   
   
     try {
+      validarCadastroTeacher.verificarSalario(novoProfessor.salario);
       await dbTeacher.insertNovoProfessor(novoProfessor);
       res.send('Cadastro com sucesso!');
     } catch(ex){ // SE DER MERDA , CAPTURA O ERRO
