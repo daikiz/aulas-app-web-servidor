@@ -20,7 +20,8 @@ async function insertNovoProfessor(professor){
     'endereco, ' +
     'telefone_fixo, ' +
     'telefone_celular) ' +
-    'VALUES (?, ?, ?, ?, ?, ?, ?, ?)';
+    'VALUES (?, STR_TO_DATE(?, "%d/%m/%Y"), ' + 
+    '?, ?, ?, ?, ?, ?)';
     
     const values = [professor.id_pessoa, 
         professor.data_contratacao,
