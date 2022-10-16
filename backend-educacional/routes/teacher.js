@@ -4,6 +4,7 @@ var dbTeacher = require('../repository/db.teacher');
 // var validarCadastroTeacher = require('../business/teacher.cadastro');
 const BasicValidationError = require('../errors/basic.validation.error');
 const TeacherModel = require('../model/teacher.model');
+const { body, validationResult } = require('express-validator');
 
 /* GET consulta de professores (agora precisa ser um função async) */
 router.get('/', async function(req, res, next) {
@@ -12,8 +13,18 @@ router.get('/', async function(req, res, next) {
 });
 
 /* POST cadastro de novos professores */
-router.post('/', async function(req, res, next) {  
-    try {  
+router.post('/', [
+         body('endereco').isLength({ min: 10 }),
+         body('telefone_fixo').isLength({ min: 12 })        
+        ], 
+async function(req, res, next) {  
+  
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
+  }
+
+  try {  
       console.log('OPERAÇAO POST');
       console.log('Conteúdo do body' + JSON.stringify(req.body));
     
